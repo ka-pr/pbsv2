@@ -36,8 +36,11 @@ RUN pip install "poetry==$POETRY_VERSION" && \
     echo "Poetry binary location: $(which poetry)" && \
     echo "Poetry version: $(poetry --version)" && \
     echo "Workspace folder: $WORKSPACE_FOLDER" && \
+    echo "GDAL version: $(gdal-config --version)" && \
     sleep 1 && \
-    pip install gdal==`gdal-config --version`
+    # pip install gdal==`gdal-config --version`
+    # pip install gdal==3.8.3
+    pip install gdal==`gdal-config --version | grep -Po "^\d+(\.?\d+)*"`
 
 # Install Poetry dependencies
 FROM build_dev_poetry_install AS build_dev_poetry_install_deps
