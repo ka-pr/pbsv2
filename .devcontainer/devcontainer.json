@@ -1,14 +1,6 @@
 {
   "name": "Prescribed Burns System Development",
-  "build": {
-    "dockerfile": "Dockerfile",
-    "context": "..",
-    "args": {
-      "--progress": "plain",
-      "workspace_folder": "/data/data/projects/pbsv2/"
-    },
-    "target": "build_dev_poetry_install"
-  },
+  "image": "dbcawa/docker_app_dev:pbsv2_dev_latest",
   "remoteUser": "container",
   "workspaceFolder": "/data/data/projects/pbsv2/",
   "mounts": [
@@ -30,6 +22,5 @@
     "pbsv2-dev"
   ],
   "forwardPorts": [9151, 9152, 9153, 9154, 9155],
-  "initializeCommand": "${localEnv:HOME}/docker-scripts-dev/windows_vbox/postgres_docker_load.sh",
-  "postCreateCommand": "poetry install --no-interaction --no-ansi && poetry run python manage.py collectstatic --no-input"
+  "initializeCommand": "${localEnv:HOME}/docker-scripts-dev/windows_vbox/postgres_docker_load.sh"
 }
